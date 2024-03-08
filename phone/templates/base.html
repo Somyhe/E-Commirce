@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Icons CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <title>MobileZone</title>
+</head>
+
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary"
+            style="box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <!-- Toggle button -->
+                <button data-mdb-collapse-init class="navbar-toggler" type="button"
+                    data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Navbar brand -->
+                    <a class="navbar-brand mt-2 mt-lg-0 " href="#">
+                        <img src="{% static 'images/logo3.png' %}" height="27" alt="Logo" loading="lazy" />
+                        MobileZone
+                    </a>
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="color: blue;">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'showphone' %}">Library</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'aboutus' %}">About us</a>
+                        </li>
+                    </ul>
+                    <!-- Left links -->
+                </div>
+                <!-- Collapsible wrapper -->
+
+                <!-- Right elements -->
+                <div class="d-flex align-items-center">
+                    <!-- Icon -->
+                    <a class="text-reset me-3" href="#">
+                        <i class="fas fa-shopping-cart"></i>
+                        <!-- Notifications -->
+                        <span class="badge rounded-pill badge-notification bg-danger">{{request.session.countcart}}</span>
+
+                    </a>
+                    <!-- Avatar -->
+
+                    {% if request.user.is_authenticated %}
+                    {%csrf_token%}
+                    <form action="{% url 'auth_logout' %}" method="post">
+                        <button type="submit" class="btn">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> <!-- Assuming you're using solid style -->
+                        </button>
+                    </form>
+                
+                    <span> &nbsp Welcome {{ request.user.username }} &nbsp </span>
+                    <a class=" d-flex align-items-center hidden-arrow ml-2" href="#" role="button"
+                        aria-expanded="false">
+                        <img src="https://img.freepik.com/free-psd/3d-rendering-avatar_23-2150833572.jpg?size=626&ext=jpg&ga=GA1.1.931278068.1694431302&semt=ais"
+                            class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+
+                    {% else %}
+
+                    <span><a href="{% url 'auth_login' %}">Log in </a></span>
+                    <span><a href="{% url 'auth_register' %}">&nbsp Register &nbsp</a></span>
+                    {% endif %}
+                </div>
+                <!-- Right elements -->
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row m-5">
+                <div class="col">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-body-tertiary" style="box-shadow: 0 -2px 4px rgba(0,0,0,0.1);">
+        <!-- Copyright -->
+        <div class="container text-center p-3">
+            © 2024 Copyright:
+            <a class="text-body" href="">MobileZone.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+
+
+</body>
+
+</html>

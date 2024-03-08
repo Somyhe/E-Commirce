@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Left part with four cards -->
+        <div class="col-md-8 mt-5">
+            <div class="row d-flex justify-content-left ">
+                <div class="col-md-12">
+                    <h1 style="font-size: 100px; margin-bottom: -10px; letter-spacing: 5px; ">Mobile</h1>
+                    <h1 class="font-weight-bold"
+                        style="font-size: 80px; color: blue; margin-top: -30px; letter-spacing: 5px;"> <b>Zone</b>
+                    </h1>
+                </div>
+                <div class="col-md-8 mb-4">
+                    <p class="text-justify " style="letter-spacing: 1px">Welcome to MobileZone your premier destination
+                        for cutting-edge smartphones
+                        and accessories. With a carefully curated selection of top brands and personalized service,
+                        we're dedicated to helping you find the perfect device to fit your lifestyle. Step into
+                        MobileZone and discover the future of mobile technology today!</p>
+                </div>
+                <div class="col-md-6 mb-4 ">
+                    <a href="{% url 'showphone' %}" >
+                        <button type="submit" class="btn rounded-pill " role="button" style="letter-spacing: 1px; color: whitesmoke; background-color: blue;">Explore
+                            Now</button>
+                        </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 px-0">
+            <img src="{% static 'images/landingPage.png' %}" class="img-fluid" alt="Placeholder Image"
+                style="width: 100%; height: auto;">
+        </div>
+
+
+        <div class="row mb-5"></div>
+        <div class="row mb-5"></div>
+    </div>
+</div>
+{% endblock %}
